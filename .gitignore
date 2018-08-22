@@ -1,0 +1,54 @@
+# profile
+*.profile
+profile/
+
+# vendor dir.
+vendor
+
+# ide files.
+.idea
+.vscode
+
+# Mac temp files.
+.DS_Store
+
+# build files
+neb
+neb-*
+cmd/network/network
+nebulas_crashreporter
+!cmd/neb
+debug
+cmd/console/neb.js/dist/
+*.report
+*.report.xml
+*.log
+
+# test debug
+*.test
+
+# db
+*.db
+normal.db*
+
+# c/cpp temp files.
+*.o
+
+# 3rd test suites.
+mozilla_js_tests*
+
+#keydir
+
+#node_modules
+node_modules
+
+#log
+logs/
+crash.log
+
+#pprof
+cpuprofile.log
+memprofile.log
+
+#testnet
+testnet/conf/network.key
