@@ -18,6 +18,16 @@ This project was initially forked from Nebulas (A well designed and implemented 
 
 ## Investors
 
+<table>
+	<tr>
+		<td><img height="50" src="docs/images/y-combinator.png"/></td>
+		<td>&nbsp;</td>
+		<td><img height="50" src="docs/images/em.png"/></td>
+		<td>&nbsp;</td>
+		<td><img height="50" src="docs/images/daohe.png"/></td>
+	</tr>
+	</table>
+
 <div style="text-align: center; display: inline-block;">
 	<div style="border: #CCC solid 1px; padding: 10px; font-weight: bold; margin: 10px; width: 200px; float: left; display: inline-block;">
 		<div style="text-align: center"><img height="50" src="docs/images/y-combinator.png"/></div>
