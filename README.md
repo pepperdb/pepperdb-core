@@ -28,18 +28,6 @@ This project was initially forked from Nebulas (A well designed and implemented 
 	</tr>
 	</table>
 
-<div style="text-align: center; display: inline-block;">
-	<div style="border: #CCC solid 1px; padding: 10px; font-weight: bold; margin: 10px; width: 200px; float: left; display: inline-block;">
-		<div style="text-align: center"><img height="50" src="docs/images/y-combinator.png"/></div>
-	</div>
-	<div style="border: #CCC solid 1px; padding: 10px; font-weight: bold; margin: 10px; width: 200px; float: left; display: inline-block;">
-		<div style="text-align: center"><img height="50" src="docs/images/em.png"/></div>
-	</div>
-	<div style="border: #CCC solid 1px; padding: 10px; font-weight: bold; margin: 10px; width: 200px; float: left; display: inline-block;">
-		<div style="text-align: center"><img height="50" src="docs/images/daohe.png"/></div>
-	</div>
-</div>
-
 
 ## Legal Partner
 <div style="text-align: center; display: inline-block;">
