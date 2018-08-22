@@ -32,6 +32,7 @@
 [[constraint]]
   branch = "master"
   name = "golang.org/x/text"
+  source = "github.com/golang/text"
 
 
 [[constraint]]
@@ -210,13 +211,15 @@
 
 
 [[constraint]]
-branch = "master"
-name = "golang.org/x/net"
+  branch = "master"
+  name = "golang.org/x/net"
+  source = "github.com/golang/net"
 
 
 [[constraint]]
-branch = "master"
-name = "golang.org/x/crypto"
+  branch = "master"
+  name = "golang.org/x/crypto"
+  source = "github.com/golang/crypto"
 
 
 [[constraint]]
@@ -235,8 +238,9 @@ name = "golang.org/x/crypto"
 
 
 [[constraint]]
-branch = "master"
-name = "golang.org/x/sys"
+  branch = "master"
+  name = "golang.org/x/sys"
+  source = "github.com/golang/sys"
 
 
 [[constraint]]
