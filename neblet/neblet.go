@@ -20,17 +20,17 @@ import (
 	"net"
 
 	"github.com/pepperdb/pepperdb-core/account"
+	"github.com/pepperdb/pepperdb-core/common/metrics"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/pepperdb/pepperdb-core/consensus/dpos"
 	"github.com/pepperdb/pepperdb-core/core"
 	"github.com/pepperdb/pepperdb-core/core/pb"
-	"github.com/pepperdb/pepperdb-core/common/metrics"
 	"github.com/pepperdb/pepperdb-core/neblet/pb"
 	nebnet "github.com/pepperdb/pepperdb-core/network/net"
-	"github.com/pepperdb/pepperdb-core/nf/nvm"
 	"github.com/pepperdb/pepperdb-core/network/rpc"
-	"github.com/pepperdb/pepperdb-core/storage"
 	nsync "github.com/pepperdb/pepperdb-core/network/sync"
-	"github.com/pepperdb/pepperdb-core/common/util/logging"
+	"github.com/pepperdb/pepperdb-core/nf/nvm"
+	"github.com/pepperdb/pepperdb-core/storage"
 	m "github.com/rcrowley/go-metrics"
 )
 
@@ -46,7 +46,7 @@ var (
 	metricsNebstartGauge = m.GetOrRegisterGauge("neb.start", nil)
 )
 
-// Neblet manages ldife cycle of blockchain services.
+// Neblet manages life cycle of blockchain services.
 type Neblet struct {
 	config *nebletpb.Config
 
