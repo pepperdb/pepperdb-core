@@ -5,7 +5,7 @@ BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
 
 CURRENT_DIR=$(shell pwd)
 BUILD_DIR=${CURRENT_DIR}
-BINARY=neb
+BINARY=pepp
 
 VET_REPORT=vet.report
 LINT_REPORT=lint.report
@@ -44,13 +44,13 @@ deploy-libs:
 	$(LDCONFIG)
 
 build:
-	cd cmd/neb; go build $(LDFLAGS) -o ../../$(BINARY)-$(COMMIT)
-	cd cmd/crashreporter; go build $(LDFLAGS) -o ../../neb-crashreporter
+	cd cmd/pepp; go build $(LDFLAGS) -o ../../$(BINARY)-$(COMMIT)
+	cd cmd/crashreporter; go build $(LDFLAGS) -o ../../pepp-crashreporter
 	-rm -f $(BINARY)
 	ln -s $(BINARY)-$(COMMIT) $(BINARY)
 
 build-linux:
-	cd cmd/neb; GOOS=linux GOARCH=amd64 go build $(LDFLAGS) -o ../../$(BINARY)-linux
+	cd cmd/pepp; GOOS=linux GOARCH=amd64 go build $(LDFLAGS) -o ../../$(BINARY)-linux
 
 test:
 	env GOCACHE=off go test ./... 2>&1 | tee $(TEST_REPORT); go2xunit -fail -input $(TEST_REPORT) -output $(TEST_XUNIT_REPORT)

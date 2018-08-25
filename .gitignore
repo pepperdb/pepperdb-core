@@ -13,8 +13,8 @@ vendor
 .DS_Store
 
 # build files
-neb
-neb-*
+pepp
+pepp-*
 cmd/network/network
 nebulas_crashreporter
 !cmd/neb
