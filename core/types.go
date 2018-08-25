@@ -22,12 +22,12 @@ import (
 	"errors"
 	"time"
 
-	"github.com/pepperdb/pepperdb-core/crypto/keystore"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore"
 
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
 
 	"github.com/pepperdb/pepperdb-core/core/state"
-	"github.com/pepperdb/pepperdb-core/net"
+	"github.com/pepperdb/pepperdb-core/network/net"
 
 	"regexp"
 
@@ -35,7 +35,7 @@ import (
 	"github.com/pepperdb/pepperdb-core/core/pb"
 	"github.com/pepperdb/pepperdb-core/neblet/pb"
 	"github.com/pepperdb/pepperdb-core/storage"
-	"github.com/pepperdb/pepperdb-core/util"
+	"github.com/pepperdb/pepperdb-core/common/util"
 )
 
 // Payload Types

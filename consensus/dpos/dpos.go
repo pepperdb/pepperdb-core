@@ -24,19 +24,19 @@ import (
 
 	"github.com/pepperdb/pepperdb-core/common/trie"
 
-	"github.com/pepperdb/pepperdb-core/rpc"
-	"github.com/pepperdb/pepperdb-core/rpc/pb"
+	"github.com/pepperdb/pepperdb-core/network/rpc"
+	"github.com/pepperdb/pepperdb-core/network/rpc/pb"
 	"golang.org/x/net/context"
 
 	"github.com/pepperdb/pepperdb-core/core/state"
-	"github.com/pepperdb/pepperdb-core/crypto/keystore"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore"
 
 	lru "github.com/hashicorp/golang-lru"
 	"github.com/pepperdb/pepperdb-core/core"
-	metrics "github.com/pepperdb/pepperdb-core/metrics"
-	"github.com/pepperdb/pepperdb-core/net"
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	metrics "github.com/pepperdb/pepperdb-core/common/metrics"
+	"github.com/pepperdb/pepperdb-core/network/net"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/sirupsen/logrus"
 )
 

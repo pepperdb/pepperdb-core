@@ -23,17 +23,17 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/pepperdb/pepperdb-core/util"
+	"github.com/pepperdb/pepperdb-core/common/util"
 
 	"time"
 
 	"github.com/gogo/protobuf/proto"
 	"github.com/pepperdb/pepperdb-core/account"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore"
 	"github.com/pepperdb/pepperdb-core/core"
 	"github.com/pepperdb/pepperdb-core/core/pb"
-	"github.com/pepperdb/pepperdb-core/crypto/keystore"
 	"github.com/pepperdb/pepperdb-core/neblet/pb"
-	"github.com/pepperdb/pepperdb-core/net"
+	"github.com/pepperdb/pepperdb-core/network/net"
 	"github.com/pepperdb/pepperdb-core/nf/nvm"
 	"github.com/pepperdb/pepperdb-core/storage"
 	"github.com/stretchr/testify/assert"

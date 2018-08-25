@@ -19,8 +19,8 @@
 package core
 
 import (
-	"github.com/pepperdb/pepperdb-core/crypto"
-	"github.com/pepperdb/pepperdb-core/crypto/keystore"
+	"github.com/pepperdb/pepperdb-core/common/crypto"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore"
 )
 
 // RecoverSignerFromSignature return address who signs the signature

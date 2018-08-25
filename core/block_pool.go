@@ -26,13 +26,13 @@ import (
 	"github.com/gogo/protobuf/proto"
 	lru "github.com/hashicorp/golang-lru"
 	"github.com/pepperdb/pepperdb-core/core/pb"
-	"github.com/pepperdb/pepperdb-core/crypto"
-	"github.com/pepperdb/pepperdb-core/crypto/hash"
-	"github.com/pepperdb/pepperdb-core/crypto/keystore/secp256k1/vrf/secp256k1VRF"
-	"github.com/pepperdb/pepperdb-core/net"
+	"github.com/pepperdb/pepperdb-core/common/crypto"
+	"github.com/pepperdb/pepperdb-core/common/crypto/hash"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore/secp256k1/vrf/secp256k1VRF"
+	"github.com/pepperdb/pepperdb-core/network/net"
 
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/sirupsen/logrus"
 )
 

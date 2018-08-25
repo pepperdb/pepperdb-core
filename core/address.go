@@ -20,8 +20,8 @@ package core
 
 import (
 	"github.com/btcsuite/btcutil/base58"
-	"github.com/pepperdb/pepperdb-core/crypto/hash"
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/crypto/hash"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
 )
 
 // AddressType address type

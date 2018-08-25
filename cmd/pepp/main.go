@@ -11,7 +11,7 @@ import (
 
 	"github.com/pepperdb/pepperdb-core/core"
 	"github.com/pepperdb/pepperdb-core/neblet"
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/urfave/cli"
 )
 

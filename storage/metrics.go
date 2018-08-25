@@ -19,7 +19,7 @@
 package storage
 
 import (
-	metrics "github.com/pepperdb/pepperdb-core/metrics"
+	metrics "github.com/pepperdb/pepperdb-core/common/metrics"
 )
 
 // Metrics for storage

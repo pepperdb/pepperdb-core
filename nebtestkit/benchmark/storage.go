@@ -26,7 +26,7 @@ import (
 
 	"github.com/pepperdb/pepperdb-core/common/trie"
 	"github.com/pepperdb/pepperdb-core/storage"
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
 )
 
 func main() {

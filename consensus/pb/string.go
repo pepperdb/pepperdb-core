@@ -21,7 +21,7 @@ package consensuspb
 import (
 	"fmt"
 
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
 )
 
 // ToString return a string of consensus root

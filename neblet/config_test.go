@@ -9,8 +9,8 @@ import (
 	"github.com/pepperdb/pepperdb-core/core"
 	"github.com/pepperdb/pepperdb-core/core/pb"
 	"github.com/pepperdb/pepperdb-core/neblet/pb"
-	"github.com/pepperdb/pepperdb-core/net"
-	"github.com/pepperdb/pepperdb-core/rpc"
+	"github.com/pepperdb/pepperdb-core/network/net"
+	"github.com/pepperdb/pepperdb-core/network/rpc"
 	"github.com/pepperdb/pepperdb-core/storage"
 	"github.com/stretchr/testify/assert"
 )

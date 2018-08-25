@@ -27,7 +27,7 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 	"github.com/pepperdb/pepperdb-core/neblet/pb"
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 )
 
 // all error should in only file

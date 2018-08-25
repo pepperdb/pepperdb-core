@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
 	"github.com/syndtr/goleveldb/leveldb/opt"
 	"github.com/tecbot/gorocksdb"
 )

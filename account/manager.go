@@ -21,10 +21,10 @@ package account
 import (
 	"errors"
 
-	"github.com/pepperdb/pepperdb-core/crypto/hash"
-	"github.com/pepperdb/pepperdb-core/crypto/keystore/secp256k1/vrf/secp256k1VRF"
+	"github.com/pepperdb/pepperdb-core/common/crypto/hash"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore/secp256k1/vrf/secp256k1VRF"
 
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
 
 	"path/filepath"
 
@@ -33,12 +33,12 @@ import (
 	"sync"
 
 	"github.com/pepperdb/pepperdb-core/core"
-	"github.com/pepperdb/pepperdb-core/crypto"
-	"github.com/pepperdb/pepperdb-core/crypto/cipher"
-	"github.com/pepperdb/pepperdb-core/crypto/keystore"
-	"github.com/pepperdb/pepperdb-core/crypto/utils"
+	"github.com/pepperdb/pepperdb-core/common/crypto"
+	"github.com/pepperdb/pepperdb-core/common/crypto/cipher"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore"
+	"github.com/pepperdb/pepperdb-core/common/crypto/utils"
 	"github.com/pepperdb/pepperdb-core/neblet/pb"
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/sirupsen/logrus"
 )
 

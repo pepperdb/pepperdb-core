@@ -21,10 +21,10 @@ package core
 import (
 	"testing"
 
-	"github.com/pepperdb/pepperdb-core/crypto"
-	"github.com/pepperdb/pepperdb-core/crypto/keystore"
-	"github.com/pepperdb/pepperdb-core/crypto/keystore/secp256k1"
-	"github.com/pepperdb/pepperdb-core/util"
+	"github.com/pepperdb/pepperdb-core/common/crypto"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore/secp256k1"
+	"github.com/pepperdb/pepperdb-core/common/util"
 
 	"sync"
 	"time"

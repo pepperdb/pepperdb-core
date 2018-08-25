@@ -27,11 +27,11 @@ import (
 	"os"
 
 	"github.com/pepperdb/pepperdb-core/core"
-	"github.com/pepperdb/pepperdb-core/crypto"
-	"github.com/pepperdb/pepperdb-core/crypto/hash"
-	"github.com/pepperdb/pepperdb-core/crypto/keystore"
-	"github.com/pepperdb/pepperdb-core/util"
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/crypto"
+	"github.com/pepperdb/pepperdb-core/common/crypto/hash"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore"
+	"github.com/pepperdb/pepperdb-core/common/util"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
 	"github.com/stretchr/testify/assert"
 )
 

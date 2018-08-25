@@ -21,8 +21,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/pepperdb/pepperdb-core/net"
-	"github.com/pepperdb/pepperdb-core/util"
+	"github.com/pepperdb/pepperdb-core/network/net"
+	"github.com/pepperdb/pepperdb-core/common/util"
 	"github.com/urfave/cli"
 )
 

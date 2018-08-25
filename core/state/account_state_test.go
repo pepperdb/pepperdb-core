@@ -23,7 +23,7 @@ import (
 
 	"github.com/pepperdb/pepperdb-core/common/trie"
 	"github.com/pepperdb/pepperdb-core/storage"
-	"github.com/pepperdb/pepperdb-core/util"
+	"github.com/pepperdb/pepperdb-core/common/util"
 	"github.com/stretchr/testify/assert"
 )
 

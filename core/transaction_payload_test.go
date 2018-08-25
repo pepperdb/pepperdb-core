@@ -21,7 +21,7 @@ package core
 import (
 	"testing"
 
-	"github.com/pepperdb/pepperdb-core/util"
+	"github.com/pepperdb/pepperdb-core/common/util"
 	"github.com/stretchr/testify/assert"
 )
 

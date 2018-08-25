@@ -23,7 +23,7 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 	"github.com/pepperdb/pepperdb-core/common/trie/pb"
-	"github.com/pepperdb/pepperdb-core/crypto/hash"
+	"github.com/pepperdb/pepperdb-core/common/crypto/hash"
 	"github.com/pepperdb/pepperdb-core/storage"
 )
 

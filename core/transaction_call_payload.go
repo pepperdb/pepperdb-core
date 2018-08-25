@@ -22,9 +22,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/pepperdb/pepperdb-core/util"
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	"github.com/pepperdb/pepperdb-core/common/util"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/sirupsen/logrus"
 )
 

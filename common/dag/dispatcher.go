@@ -18,7 +18,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/sirupsen/logrus"
 )
 

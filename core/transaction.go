@@ -23,7 +23,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/pepperdb/pepperdb-core/crypto/sha3"
+	"github.com/pepperdb/pepperdb-core/common/crypto/sha3"
 
 	"github.com/pepperdb/pepperdb-core/core/state"
 
@@ -31,11 +31,11 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 	"github.com/pepperdb/pepperdb-core/core/pb"
-	"github.com/pepperdb/pepperdb-core/crypto"
-	"github.com/pepperdb/pepperdb-core/crypto/keystore"
-	"github.com/pepperdb/pepperdb-core/util"
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	"github.com/pepperdb/pepperdb-core/common/crypto"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore"
+	"github.com/pepperdb/pepperdb-core/common/util"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/sirupsen/logrus"
 )
 

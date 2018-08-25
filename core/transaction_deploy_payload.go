@@ -24,10 +24,10 @@ import (
 
 	"github.com/pepperdb/pepperdb-core/core/pb"
 	"github.com/pepperdb/pepperdb-core/core/state"
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/sirupsen/logrus"
 
-	"github.com/pepperdb/pepperdb-core/util"
+	"github.com/pepperdb/pepperdb-core/common/util"
 )
 
 // DeployPayload carry contract deploy information

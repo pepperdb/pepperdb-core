@@ -23,7 +23,7 @@ import (
 	"unsafe"
 
 	"github.com/pepperdb/pepperdb-core/core/state"
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/sirupsen/logrus"
 )
 

@@ -21,7 +21,7 @@ package nvm
 import "C"
 
 import (
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 )
 
 // V8Log export V8Log

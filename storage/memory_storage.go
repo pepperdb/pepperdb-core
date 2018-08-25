@@ -21,7 +21,7 @@ package storage
 import (
 	"sync"
 
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
 )
 
 // MemoryStorage the nodes in trie.

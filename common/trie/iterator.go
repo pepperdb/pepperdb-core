@@ -21,7 +21,7 @@ package trie
 import (
 	"errors"
 
-	"github.com/pepperdb/pepperdb-core/crypto/hash"
+	"github.com/pepperdb/pepperdb-core/common/crypto/hash"
 )
 
 // errors constants

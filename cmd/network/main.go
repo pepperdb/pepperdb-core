@@ -30,11 +30,11 @@ import (
 
 	"github.com/libp2p/go-libp2p-interface-conn"
 	"github.com/pepperdb/pepperdb-core/core"
-	"github.com/pepperdb/pepperdb-core/metrics"
+	"github.com/pepperdb/pepperdb-core/common/metrics"
 	"github.com/pepperdb/pepperdb-core/neblet"
-	"github.com/pepperdb/pepperdb-core/net"
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	"github.com/pepperdb/pepperdb-core/network/net"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 )
 
 // Message Type

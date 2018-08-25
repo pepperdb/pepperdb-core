@@ -24,10 +24,10 @@ import (
 	"crypto/md5"
 
 	"github.com/pepperdb/pepperdb-core/core"
-	"github.com/pepperdb/pepperdb-core/crypto/hash"
-	"github.com/pepperdb/pepperdb-core/crypto/keystore"
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	"github.com/pepperdb/pepperdb-core/common/crypto/hash"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/sirupsen/logrus"
 )
 

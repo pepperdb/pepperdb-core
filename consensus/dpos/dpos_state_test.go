@@ -24,13 +24,13 @@ import (
 	"github.com/pepperdb/pepperdb-core/consensus/pb"
 
 	"github.com/pepperdb/pepperdb-core/core"
-	"github.com/pepperdb/pepperdb-core/crypto/keystore"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore"
 
 	"github.com/stretchr/testify/assert"
 
 	"github.com/pepperdb/pepperdb-core/common/trie"
 	"github.com/pepperdb/pepperdb-core/storage"
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
 )
 
 func checkDynasty(t *testing.T, consensus core.Consensus, consensusRoot *consensuspb.ConsensusRoot, storage storage.Storage) {

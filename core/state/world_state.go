@@ -23,12 +23,12 @@ import (
 
 	"github.com/pepperdb/pepperdb-core/consensus/pb"
 	"github.com/pepperdb/pepperdb-core/core/pb"
-	"github.com/pepperdb/pepperdb-core/util"
+	"github.com/pepperdb/pepperdb-core/common/util"
 
 	"github.com/pepperdb/pepperdb-core/common/mvccdb"
 	"github.com/pepperdb/pepperdb-core/common/trie"
 	"github.com/pepperdb/pepperdb-core/storage"
-	"github.com/pepperdb/pepperdb-core/util/byteutils"
+	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
 )
 
 func newChangeLog() (*mvccdb.MVCCDB, error) {

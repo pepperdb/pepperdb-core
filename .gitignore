@@ -15,7 +15,7 @@ vendor
 # build files
 pepp
 pepp-*
-cmd/network/network
+cmd/network
 nebulas_crashreporter
 !cmd/neb
 debug

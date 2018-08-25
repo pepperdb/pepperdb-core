@@ -23,7 +23,7 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/pepperdb/pepperdb-core/net"
+	"github.com/pepperdb/pepperdb-core/network/net"
 	"github.com/urfave/cli"
 )
 

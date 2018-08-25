@@ -21,8 +21,8 @@ package core
 import (
 	"fmt"
 
-	"github.com/pepperdb/pepperdb-core/util"
-	"github.com/pepperdb/pepperdb-core/util/logging"
+	"github.com/pepperdb/pepperdb-core/common/util"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/sirupsen/logrus"
 )
 

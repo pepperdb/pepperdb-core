@@ -22,7 +22,7 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/pepperdb/pepperdb-core/metrics"
+	"github.com/pepperdb/pepperdb-core/common/metrics"
 	"github.com/pepperdb/pepperdb-core/storage"
 )
 

@@ -23,8 +23,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pepperdb/pepperdb-core/crypto/keystore"
-	"github.com/pepperdb/pepperdb-core/crypto/keystore/secp256k1"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore"
+	"github.com/pepperdb/pepperdb-core/common/crypto/keystore/secp256k1"
 	"github.com/stretchr/testify/assert"
 )
 
