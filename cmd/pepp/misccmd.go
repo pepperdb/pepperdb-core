@@ -45,7 +45,7 @@ var (
 )
 
 func _version(ctx *cli.Context) error {
-	neb, err := makeNeb(ctx)
+	neb, err := makePepp(ctx)
 	if err != nil {
 		return err
 	}

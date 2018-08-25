@@ -51,7 +51,7 @@ The genesis command for genesis dump or other commands.`,
 				Usage:  "dump the genesis",
 				Action: MergeFlags(dumpGenesis),
 				Description: `
-    neb account new
+    pepp account new
 
 Dump the genesis config info.`,
 			},
@@ -65,7 +65,7 @@ Dump the genesis config info.`,
 		ArgsUsage: "<blocknumber>",
 		Category:  "BLOCKCHAIN COMMANDS",
 		Description: `
-Use "./neb dump 10" to dump 10 blocks before tail block.`,
+Use "./pepp dump 10" to dump 10 blocks before tail block.`,
 	}
 )
 
@@ -76,7 +76,7 @@ func initGenesis(ctx *cli.Context) error {
 		FatalF("load genesis conf faild: %v", err)
 	}
 
-	neb, err := makeNeb(ctx)
+	neb, err := makePepp(ctx)
 	if err != nil {
 		return err
 	}
@@ -87,7 +87,7 @@ func initGenesis(ctx *cli.Context) error {
 }
 
 func dumpGenesis(ctx *cli.Context) error {
-	neb, err := makeNeb(ctx)
+	neb, err := makePepp(ctx)
 	if err != nil {
 		FatalF("dump genesis conf faild: %v", err)
 	}
@@ -110,7 +110,7 @@ func dumpGenesis(ctx *cli.Context) error {
 }
 
 func dumpblock(ctx *cli.Context) error {
-	neb, err := makeNeb(ctx)
+	neb, err := makePepp(ctx)
 	if err != nil {
 		return err
 	}

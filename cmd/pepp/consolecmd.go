@@ -37,7 +37,7 @@ The Neb console is an interactive shell for the JavaScript runtime environment.`
 )
 
 func consoleStart(ctx *cli.Context) error {
-	neb, err := makeNeb(ctx)
+	neb, err := makePepp(ctx)
 	if err != nil {
 		return err
 	}

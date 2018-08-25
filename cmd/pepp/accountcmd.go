@@ -43,7 +43,7 @@ account, create a new account or update an existing account.`,
 				Action:    MergeFlags(accountCreate),
 				ArgsUsage: "[passphrase]",
 				Description: `
-    neb account new
+    pepp account new
 
 Creates a new account and prints the address. If passphrase not input, prompt input and confirm.`,
 			},
@@ -60,7 +60,7 @@ Print a short summary of all accounts`,
 				Action:    MergeFlags(accountUpdate),
 				ArgsUsage: "<address>",
 				Description: `
-    neb account update <address>
+    pepp account update <address>
 
 Update an existing account.`,
 			},
@@ -70,7 +70,7 @@ Update an existing account.`,
 				Action:    MergeFlags(accountImport),
 				ArgsUsage: "<keyFile>",
 				Description: `
-    neb account import <keyfile>
+    pepp account import <keyfile>
 
 Imports an encrypted private key from <keyfile> and creates a new account.`,
 			},
@@ -80,7 +80,7 @@ Imports an encrypted private key from <keyfile> and creates a new account.`,
 
 // accountList list account
 func accountList(ctx *cli.Context) error {
-	neb, err := makeNeb(ctx)
+	neb, err := makePepp(ctx)
 	if err != nil {
 		return err
 	}
@@ -94,7 +94,7 @@ func accountList(ctx *cli.Context) error {
 
 // accountCreate creates a new account into the keystore
 func accountCreate(ctx *cli.Context) error {
-	neb, err := makeNeb(ctx)
+	neb, err := makePepp(ctx)
 	if err != nil {
 		return err
 	}
@@ -116,7 +116,7 @@ func accountUpdate(ctx *cli.Context) error {
 		FatalF("No accounts specified to update")
 	}
 
-	neb, err := makeNeb(ctx)
+	neb, err := makePepp(ctx)
 	if err != nil {
 		return err
 	}
@@ -149,7 +149,7 @@ func accountImport(ctx *cli.Context) error {
 		FatalF("file read failed:%s", err)
 	}
 
-	neb, err := makeNeb(ctx)
+	neb, err := makePepp(ctx)
 	if err != nil {
 		return err
 	}

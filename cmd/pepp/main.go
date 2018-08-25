@@ -1,21 +1,3 @@
-// Copyright (C) 2017 go-nebulas authors
-//
-// This file is part of the go-nebulas library.
-//
-// the go-nebulas library is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// the go-nebulas library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with the go-nebulas library.  If not, see <http://www.gnu.org/licenses/>.
-//
-
 package main
 
 import (
@@ -42,15 +24,14 @@ var (
 )
 
 func main() {
-
 	app := cli.NewApp()
-	app.Action = neb
-	app.Name = "neb"
+	app.Action = pepp
+	app.Name = "PepperDB Core"
 	app.Version = fmt.Sprintf("%s, branch %s, commit %s", version, branch, commit)
 	timestamp, _ := strconv.ParseInt(compileAt, 10, 64)
 	app.Compiled = time.Unix(timestamp, 0)
-	app.Usage = "the go-nebulas command line interface"
-	app.Copyright = "Copyright 2017-2018 The go-nebulas Authors"
+	app.Usage = "The PepperDB command line tools"
+	app.Copyright = "Copyright 2018-2019 The PepperDB team"
 
 	app.Flags = append(app.Flags, ConfigFlag)
 	app.Flags = append(app.Flags, NetworkFlags...)
@@ -77,8 +58,8 @@ func main() {
 	app.Run(os.Args)
 }
 
-func neb(ctx *cli.Context) error {
-	n, err := makeNeb(ctx)
+func pepp(ctx *cli.Context) error {
+	n, err := makePepp(ctx)
 	if err != nil {
 		return err
 	}
@@ -93,12 +74,12 @@ func neb(ctx *cli.Context) error {
 	}
 
 	select {
-	case <-runNeb(ctx, n):
+	case <-runPepp(ctx, n):
 		return nil
 	}
 }
 
-func runNeb(ctx *cli.Context, n *neblet.Neblet) chan bool {
+func runPepp(ctx *cli.Context, n *neblet.Neblet) chan bool {
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 
@@ -125,7 +106,7 @@ func runNeb(ctx *cli.Context, n *neblet.Neblet) chan bool {
 	return quitCh
 }
 
-func makeNeb(ctx *cli.Context) (*neblet.Neblet, error) {
+func makePepp(ctx *cli.Context) (*neblet.Neblet, error) {
 	conf := neblet.LoadConfig(config)
 	conf.App.Version = version
 
