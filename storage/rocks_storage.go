@@ -5,9 +5,9 @@ import (
 	"sync"
 	"time"
 
+	"github.com/pepperdb/gorocksdb"
 	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/tecbot/gorocksdb"
 )
 
 // RocksStorage the nodes in trie.

@@ -747,7 +747,7 @@
 [[projects]]
   branch = "master"
   digest = "1:bd33a8c74446ea5023640d38176fdec110763b70556f0440074319e6ade48382"
-  name = "github.com/tecbot/gorocksdb"
+  name = "github.com/pepperdb/gorocksdb"
   packages = ["."]
   pruneopts = ""
   revision = "3e476152774442234f9a9f747386a48a1d82a515"
@@ -1028,7 +1028,7 @@
     "github.com/syndtr/goleveldb/leveldb",
     "github.com/syndtr/goleveldb/leveldb/filter",
     "github.com/syndtr/goleveldb/leveldb/opt",
-    "github.com/tecbot/gorocksdb",
+    "github.com/pepperdb/gorocksdb",
     "github.com/urfave/cli",
     "github.com/willf/bloom",
     "golang.org/x/crypto/ripemd160",
