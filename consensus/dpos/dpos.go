@@ -10,15 +10,15 @@ import (
 	"github.com/pepperdb/pepperdb-core/network/rpc/pb"
 	"golang.org/x/net/context"
 
-	"github.com/pepperdb/pepperdb-core/core/state"
 	"github.com/pepperdb/pepperdb-core/common/crypto/keystore"
+	"github.com/pepperdb/pepperdb-core/core/state"
 
 	lru "github.com/hashicorp/golang-lru"
-	"github.com/pepperdb/pepperdb-core/core"
 	metrics "github.com/pepperdb/pepperdb-core/common/metrics"
-	"github.com/pepperdb/pepperdb-core/network/net"
 	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
 	"github.com/pepperdb/pepperdb-core/common/util/logging"
+	"github.com/pepperdb/pepperdb-core/core"
+	"github.com/pepperdb/pepperdb-core/network/net"
 	"github.com/sirupsen/logrus"
 )
 
@@ -81,12 +81,12 @@ func NewDpos() *Dpos {
 }
 
 // Setup a dpos consensus handler
-func (dpos *Dpos) Setup(neblet core.Neblet) error {
-	dpos.chain = neblet.BlockChain()
-	dpos.ns = neblet.NetService()
-	dpos.am = neblet.AccountManager()
+func (dpos *Dpos) Setup(pepp core.Neblet) error {
+	dpos.chain = pepp.BlockChain()
+	dpos.ns = pepp.NetService()
+	dpos.am = pepp.AccountManager()
 
-	chainConfig := neblet.Config().Chain
+	chainConfig := pepp.Config().Chain
 	if chainConfig.StartMine {
 		coinbase, err := core.AddressParse(chainConfig.Coinbase)
 		if err != nil {
