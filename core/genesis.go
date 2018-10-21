@@ -117,7 +117,7 @@ func NewGenesisBlock(conf *corepb.Genesis, chain *BlockChain) (*Block, error) {
 	declaration := fmt.Sprintf(
 		"%s\n\n%s\n\n%s\n\n%s\n\n%s\n\n%s\n\n%s\n\n\n\n%s\n\n%s\n\n%s\n\n%s\n\n%s\n\n%s\n\n\n\n%s",
 		"Pepperdb Manifesto",
-		"Contract the world..."
+		"Contract the world...",
 
 		"by Pepperdb (pepperdb.org)",
 	)
