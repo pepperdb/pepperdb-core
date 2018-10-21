@@ -1,4 +1,4 @@
-VERSION?=1.0.7
+VERSION?=1.1.0
 
 COMMIT=$(shell git rev-parse HEAD)
 BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
@@ -17,10 +17,14 @@ ifeq ($(OS),Darwin)
 	DYLIB=.dylib
 	INSTALL=install
 	LDCONFIG=
+	NEBBINARY=$(BINARY)
+	BUUILDLOG=
 else
 	DYLIB=.so
 	INSTALL=sudo install
 	LDCONFIG=sudo /sbin/ldconfig
+	NEBBINARY=$(BINARY)-$(COMMIT)
+	BUUILDLOG=-rm -f $(BINARY); ln -s $(BINARY)-$(COMMIT) $(BINARY)
 endif
 
 # Setup the -ldflags option for go build here, interpolate the variable values
@@ -46,8 +50,8 @@ deploy-libs:
 build:
 	cd cmd/pepp; go build $(LDFLAGS) -o ../../$(BINARY)-$(COMMIT)
 	cd cmd/crashreporter; go build $(LDFLAGS) -o ../../pepp-crashreporter
-	-rm -f $(BINARY)
-	ln -s $(BINARY)-$(COMMIT) $(BINARY)
+	rm -f $(BINARY)
+	cp -f $(BINARY)-$(COMMIT) $(BINARY)
 
 build-linux:
 	cd cmd/pepp; GOOS=linux GOARCH=amd64 go build $(LDFLAGS) -o ../../$(BINARY)-linux
