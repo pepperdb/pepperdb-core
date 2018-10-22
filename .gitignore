@@ -18,6 +18,7 @@ pepp-*
 cmd/network
 nebulas_crashreporter
 !cmd/neb
+!cmd/pepp
 debug
 cmd/console/neb.js/dist/
 *.report
