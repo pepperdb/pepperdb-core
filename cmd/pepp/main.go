@@ -52,6 +52,7 @@ func main() {
 		licenseCommand,
 		configCommand,
 		blockDumpCommand,
+		dappServerCommand,
 	}
 	sort.Sort(cli.CommandsByName(app.Commands))
 

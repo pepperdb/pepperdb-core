@@ -1,4 +1,4 @@
-package dapp_server
+package dappserver
 
 import (
 	"time"
@@ -6,7 +6,7 @@ import (
 	"github.com/pepperdb/pepperdb-core/neblet/pb"
 )
 
-// Config dapp_server config
+// Config DAppServer config
 // TODO: move to proto config.
 type Config struct {
 	Host         string

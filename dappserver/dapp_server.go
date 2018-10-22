@@ -1,4 +1,4 @@
-package dapp_server
+package dappserver
 
 import (
 	"errors"
@@ -19,11 +19,11 @@ type DAppServer struct {
 }
 
 // NewDAppServer create the dapp server
-func NewDAppServer(n Neblet) (*DAppServer, error) {
-	if networkConf := n.Config().GetNetwork(); networkConf == nil {
+func NewDAppServer( /*n Neblet*/ ) (*DAppServer, error) {
+	/*if networkConf := n.Config().GetNetwork(); networkConf == nil {
 		logging.CLog().Fatal("Failed to find dapp_server config in config file")
 		return nil, errors.New("config.conf should has dapp_server")
-	}
+	}*/
 	config := &Config{
 		Host:         "127.0.0.1",
 		Port:         8000,
@@ -34,7 +34,11 @@ func NewDAppServer(n Neblet) (*DAppServer, error) {
 	}
 
 	mux := http.NewServeMux()
-	mux.Handle("/upload", &fileHandler{})
+	fh, err := newFileHandler(20*1024*1024, "./dapp-db")
+	if err != nil {
+		logging.CLog().Error("Create file handler error")
+	}
+	mux.Handle("/upload", fh)
 
 	server := &http.Server{
 		Addr:         config.Host + ":" + strconv.FormatInt(config.Port, 10),
@@ -63,13 +67,13 @@ func NewDAppServer(n Neblet) (*DAppServer, error) {
 // Start start dapp server
 func (ds *DAppServer) Start() error {
 	logging.CLog().Info("Starting DAppServer...")
-	go ds.loop()
+	ds.loop()
 
 	return nil
 }
 
 func (ds *DAppServer) loop() {
-	go ds.server.ListenAndServe()
+	ds.server.ListenAndServe()
 	logging.CLog().Info("DAppServer started")
 }
 
