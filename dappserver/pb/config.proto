@@ -1,0 +1,13 @@
+syntax = "proto3";
+package dappserverpb;
+
+message Config {
+    // Host
+    string host = 1;
+    // Port
+    uint32 port = 2;
+    // ReadTimeout in millisecond
+    uint32 read_timeout_ms = 3;
+    // WriteTimeout in millisecond
+    uint32 write_timeout_ms = 4;
+}
