@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/pepperdb/pepperdb-core/common/util/logging"
+	"github.com/pepperdb/pepperdb-core/dappserver/pb"
 	"github.com/pepperdb/pepperdb-core/storage"
 )
 
@@ -24,13 +25,13 @@ func NewDAppServer( /*n Neblet*/ ) (*DAppServer, error) {
 		logging.CLog().Fatal("Failed to find dapp_server config in config file")
 		return nil, errors.New("config.conf should has dapp_server")
 	}*/
-	config := &Config{
-		Host:         "127.0.0.1",
-		Port:         8000,
-		ReadTimeout:  3 * time.Second,
-		WriteTimeout: 3 * time.Second,
-		SaveLog:      true,
-		LogFile:      "./dapp_server.log",
+	config := &dappserverpb.DAppServerConfig{
+		Host:           "127.0.0.1",
+		Port:           8000,
+		ReadTimeoutMs:  300,
+		WriteTimeoutMs: 300,
+		SaveLog:        true,
+		LogFile:        "./dapp_server.log",
 	}
 
 	mux := http.NewServeMux()
@@ -41,9 +42,9 @@ func NewDAppServer( /*n Neblet*/ ) (*DAppServer, error) {
 	mux.Handle("/upload", fh)
 
 	server := &http.Server{
-		Addr:         config.Host + ":" + strconv.FormatInt(config.Port, 10),
-		ReadTimeout:  config.ReadTimeout,
-		WriteTimeout: config.WriteTimeout,
+		Addr:         config.Host + ":" + strconv.Itoa(int(config.Port)),
+		ReadTimeout:  time.Duration(config.ReadTimeoutMs) * time.Millisecond,
+		WriteTimeout: time.Duration(config.WriteTimeoutMs) * time.Millisecond,
 		Handler:      mux,
 	}
 

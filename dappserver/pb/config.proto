@@ -2,12 +2,22 @@ syntax = "proto3";
 package dappserverpb;
 
 message Config {
+    DAppServerConfig dappServer = 1;
+}
+
+message DAppServerConfig {
+    // Enable
+    bool enable = 1;
     // Host
-    string host = 1;
+    string host = 2;
     // Port
-    uint32 port = 2;
+    uint32 port = 3;
     // ReadTimeout in millisecond
-    uint32 read_timeout_ms = 3;
+    uint32 read_timeout_ms = 4;
     // WriteTimeout in millisecond
-    uint32 write_timeout_ms = 4;
+    uint32 write_timeout_ms = 5;
+    // Save log
+    bool save_log = 6;
+    // Log file
+    string log_file = 7;
 }
