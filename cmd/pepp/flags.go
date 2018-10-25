@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/pepperdb/pepperdb-core/dappserver/pb"
 	"github.com/pepperdb/pepperdb-core/neblet/pb"
 	"github.com/urfave/cli"
 )
@@ -225,6 +226,52 @@ var (
 		StatsDBUserFlag,
 		StatsDBPasswordFlag,
 	}
+
+	// DAppServerEnableFlag dappserver enable
+	DAppServerEnableFlag = cli.BoolFlag{
+		Name:  "dappserver.enable",
+		Usage: "dappserver enable",
+	}
+
+	// DAppServerOnly start dappserver only
+	DAppServerOnlyFlag = cli.BoolFlag{
+		Name:  "dappserver.dapp_server_only",
+		Usage: "start dappserver only",
+	}
+
+	// DAppServerHostFlag dappserver host
+	DAppServerHostFlag = cli.StringFlag{
+		Name:  "dappserver.host",
+		Usage: "dappserver host",
+	}
+
+	// DAppServerPortFlag dappserver port
+	DAppServerPortFlag = cli.Uint64Flag{
+		Name:  "dappserver.port",
+		Usage: "dappserver port",
+	}
+
+	// DAppServerReadTimeoutMs dappserver read time out in ms
+	DAppServerReadTimeoutMsFlag = cli.Uint64Flag{
+		Name:  "dappserver.read_timeout_ms",
+		Usage: "dappserver read_timeout_ms",
+	}
+
+	// DAppServerWriteTimeoutMs dappserver write time out in ms
+	DAppServerWriteTimeoutMsFlag = cli.Uint64Flag{
+		Name:  "dappserver.write_timeout_ms",
+		Usage: "dappserver write_timeout_ms",
+	}
+
+	// DAppServer config list
+	DAppServerFlags = []cli.Flag{
+		DAppServerEnableFlag,
+		DAppServerOnlyFlag,
+		DAppServerHostFlag,
+		DAppServerPortFlag,
+		DAppServerReadTimeoutMsFlag,
+		DAppServerWriteTimeoutMsFlag,
+	}
 )
 
 func networkConfig(ctx *cli.Context, cfg *nebletpb.NetworkConfig) {
@@ -324,6 +371,27 @@ func statsConfig(ctx *cli.Context, cfg *nebletpb.StatsConfig) {
 	}
 	if ctx.GlobalIsSet(StatsDBPasswordFlag.Name) {
 		cfg.Influxdb.Password = ctx.GlobalString(StatsDBPasswordFlag.Name)
+	}
+}
+
+func dappserverConfig(ctx *cli.Context, cfg *dappserverpb.DAppServerConfig) {
+	if ctx.GlobalIsSet(DAppServerEnableFlag.Name) {
+		cfg.Enable = ctx.GlobalBool(DAppServerEnableFlag.Name)
+	}
+	if ctx.GlobalIsSet(DAppServerOnlyFlag.Name) {
+		cfg.DappServerOnly = ctx.GlobalBool(DAppServerOnlyFlag.Name)
+	}
+	if ctx.GlobalIsSet(DAppServerHostFlag.Name) {
+		cfg.Host = ctx.GlobalString(DAppServerHostFlag.Name)
+	}
+	if ctx.GlobalIsSet(DAppServerPortFlag.Name) {
+		cfg.Port = ctx.GlobalUint64(DAppServerPortFlag.Name)
+	}
+	if ctx.GlobalIsSet(DAppServerReadTimeoutMsFlag.Name) {
+		cfg.ReadTimeoutMs = ctx.GlobalUint64(DAppServerReadTimeoutMsFlag.Name)
+	}
+	if ctx.GlobalIsSet(DAppServerWriteTimeoutMsFlag.Name) {
+		cfg.WriteTimeoutMs = ctx.GlobalUint64(DAppServerWriteTimeoutMsFlag.Name)
 	}
 }
 

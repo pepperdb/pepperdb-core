@@ -30,8 +30,6 @@ func NewDAppServer( /*n Neblet*/ ) (*DAppServer, error) {
 		Port:           8000,
 		ReadTimeoutMs:  300,
 		WriteTimeoutMs: 300,
-		SaveLog:        true,
-		LogFile:        "./dapp_server.log",
 	}
 
 	mux := http.NewServeMux()
@@ -48,8 +46,8 @@ func NewDAppServer( /*n Neblet*/ ) (*DAppServer, error) {
 		Handler:      mux,
 	}
 
-	if config.SaveLog {
-		logFile, err := os.Create(config.LogFile)
+	if true {
+		logFile, err := os.Create("./dappserver.log")
 		if err != nil {
 			logging.CLog().Error("Create dapp server log file error")
 			return nil, errors.New("Create dapp server log file error")

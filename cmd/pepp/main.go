@@ -11,6 +11,7 @@ import (
 
 	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/pepperdb/pepperdb-core/core"
+	"github.com/pepperdb/pepperdb-core/dappserver"
 	"github.com/pepperdb/pepperdb-core/neblet"
 	"github.com/urfave/cli"
 )
@@ -52,7 +53,6 @@ func main() {
 		licenseCommand,
 		configCommand,
 		blockDumpCommand,
-		dappServerCommand,
 	}
 	sort.Sort(cli.CommandsByName(app.Commands))
 
@@ -60,6 +60,7 @@ func main() {
 }
 
 func pepp(ctx *cli.Context) error {
+
 	n, err := makePepp(ctx)
 	if err != nil {
 		return err
@@ -123,6 +124,22 @@ func makePepp(ctx *cli.Context) (*neblet.Neblet, error) {
 		return nil, err
 	}
 	return n, nil
+}
+
+func makeDAppServer(ctx *cli.Context) (*dappserver.DAppServer, bool, error) {
+	conf := dappserver.LoadConfig(config)
+
+	dappserverConfig(ctx, conf.Dappserver)
+
+	if !conf.Dappserver.GetEnable() {
+		return nil, true, nil
+	}
+	d, err := dappserver.NewDAppServer()
+	if err != nil {
+		return nil, true, nil
+	}
+	only := conf.Dappserver.GetDappServerOnly()
+	return d, only, nil
 }
 
 // FatalF fatal format err
