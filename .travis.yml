@@ -2,7 +2,7 @@ language: go
 
 branches:
   only:
-  - dev
+  - tzh
 
 go:
 - 1.10.x
