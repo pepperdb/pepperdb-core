@@ -61,23 +61,41 @@ func main() {
 
 func pepp(ctx *cli.Context) error {
 
-	n, err := makePepp(ctx)
-	if err != nil {
-		return err
-	}
+	dasConf := dappserver.LoadConfig(config)
 
-	logging.Init(n.Config().App.LogFile, n.Config().App.LogLevel, n.Config().App.LogAge)
+	dappserverConfig(ctx, dasConf.Dappserver)
 
-	core.SetCompatibilityOptions(n.Config().Chain.ChainId)
+	if !dasConf.Dappserver.GetEnable() {
+		d, err := dappserver.NewDAppServer(dasConf)
+		if err != nil {
+			return err
+		}
 
-	// enable crash report if open the switch and configure the url
-	if n.Config().App.EnableCrashReport && len(n.Config().App.CrashReportUrl) > 0 {
-		InitCrashReporter(n.Config().App)
-	}
+		logging.Init(d.Config().Dappserver.LogFile, d.Config().Dappserver.LogLevel, d.Config().Dappserver.LogAge)
 
-	select {
-	case <-runPepp(ctx, n):
-		return nil
+		select {
+		case <-runDAppServer(ctx, d):
+			return nil
+		}
+	} else {
+		n, err := makePepp(ctx)
+		if err != nil {
+			return err
+		}
+
+		logging.Init(n.Config().App.LogFile, n.Config().App.LogLevel, n.Config().App.LogAge)
+
+		core.SetCompatibilityOptions(n.Config().Chain.ChainId)
+
+		// enable crash report if open the switch and configure the url
+		if n.Config().App.EnableCrashReport && len(n.Config().App.CrashReportUrl) > 0 {
+			InitCrashReporter(n.Config().App)
+		}
+
+		select {
+		case <-runPepp(ctx, n):
+			return nil
+		}
 	}
 }
 

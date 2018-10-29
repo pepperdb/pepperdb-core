@@ -16,21 +16,23 @@ import (
 
 // DAppServer server of DApp file
 type DAppServer struct {
+	config *dappserverpb.Config
+
 	server *http.Server
 }
 
 // NewDAppServer create the dapp server
-func NewDAppServer( /*n Neblet*/ ) (*DAppServer, error) {
+func NewDAppServer(config *dappserverpb.Config) (*DAppServer, error) {
 	/*if networkConf := n.Config().GetNetwork(); networkConf == nil {
 		logging.CLog().Fatal("Failed to find dapp_server config in config file")
 		return nil, errors.New("config.conf should has dapp_server")
-	}*/
+	}
 	config := &dappserverpb.DAppServerConfig{
 		Host:           "127.0.0.1",
 		Port:           8000,
 		ReadTimeoutMs:  300,
 		WriteTimeoutMs: 300,
-	}
+	}*/
 
 	mux := http.NewServeMux()
 	fh, err := newFileHandler(20*1024*1024, "./dapp-db")
@@ -40,9 +42,9 @@ func NewDAppServer( /*n Neblet*/ ) (*DAppServer, error) {
 	mux.Handle("/upload", fh)
 
 	server := &http.Server{
-		Addr:         config.Host + ":" + strconv.Itoa(int(config.Port)),
-		ReadTimeout:  time.Duration(config.ReadTimeoutMs) * time.Millisecond,
-		WriteTimeout: time.Duration(config.WriteTimeoutMs) * time.Millisecond,
+		Addr:         config.Dappserver.GetHost() + ":" + strconv.Itoa(int(config.Dappserver.GetPort())),
+		ReadTimeout:  time.Duration(config.Dappserver.GetReadTimeoutMs()) * time.Millisecond,
+		WriteTimeout: time.Duration(config.Dappserver.GetWriteTimeoutMs()) * time.Millisecond,
 		Handler:      mux,
 	}
 
@@ -57,10 +59,16 @@ func NewDAppServer( /*n Neblet*/ ) (*DAppServer, error) {
 	}
 
 	ds := &DAppServer{
+		config: config,
 		server: server,
 	}
 
 	return ds, nil
+}
+
+// Config returns DApp server configuration.
+func (ds *DAppServer) Config() *dappserverpb.Config {
+	return ds.config
 }
 
 // Start start dapp server

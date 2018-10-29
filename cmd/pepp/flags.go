@@ -233,12 +233,6 @@ var (
 		Usage: "dappserver enable",
 	}
 
-	// DAppServerOnly start dappserver only
-	DAppServerOnlyFlag = cli.BoolFlag{
-		Name:  "dappserver.dapp_server_only",
-		Usage: "start dappserver only",
-	}
-
 	// DAppServerHostFlag dappserver host
 	DAppServerHostFlag = cli.StringFlag{
 		Name:  "dappserver.host",
@@ -251,26 +245,39 @@ var (
 		Usage: "dappserver port",
 	}
 
-	// DAppServerReadTimeoutMs dappserver read time out in ms
+	// DAppServerReadTimeoutMsFlag dappserver read time out in ms
 	DAppServerReadTimeoutMsFlag = cli.Uint64Flag{
 		Name:  "dappserver.read_timeout_ms",
 		Usage: "dappserver read_timeout_ms",
 	}
 
-	// DAppServerWriteTimeoutMs dappserver write time out in ms
+	// DAppServerWriteTimeoutMsFlag dappserver write time out in ms
 	DAppServerWriteTimeoutMsFlag = cli.Uint64Flag{
 		Name:  "dappserver.write_timeout_ms",
 		Usage: "dappserver write_timeout_ms",
 	}
 
-	// DAppServer config list
+	// DAppServerLogLevelFlag dappserver log level
+	DAppServerLogLevelFlag = cli.StringFlag{
+		Name:  "dappserver.log_level",
+		Usage: "dappserver log_level",
+	}
+
+	// DAppServerLogFileFlag dappserver log file name
+	DAppServerLogFileFlag = cli.StringFlag{
+		Name:  "dappserver.log_file",
+		Usage: "dappserver log file",
+	}
+
+	// DAppServerFlags config list
 	DAppServerFlags = []cli.Flag{
 		DAppServerEnableFlag,
-		DAppServerOnlyFlag,
 		DAppServerHostFlag,
 		DAppServerPortFlag,
 		DAppServerReadTimeoutMsFlag,
 		DAppServerWriteTimeoutMsFlag,
+		DAppServerLogLevelFlag,
+		DAppServerLogFileFlag,
 	}
 )
 
@@ -378,9 +385,6 @@ func dappserverConfig(ctx *cli.Context, cfg *dappserverpb.DAppServerConfig) {
 	if ctx.GlobalIsSet(DAppServerEnableFlag.Name) {
 		cfg.Enable = ctx.GlobalBool(DAppServerEnableFlag.Name)
 	}
-	if ctx.GlobalIsSet(DAppServerOnlyFlag.Name) {
-		cfg.DappServerOnly = ctx.GlobalBool(DAppServerOnlyFlag.Name)
-	}
 	if ctx.GlobalIsSet(DAppServerHostFlag.Name) {
 		cfg.Host = ctx.GlobalString(DAppServerHostFlag.Name)
 	}
@@ -392,6 +396,12 @@ func dappserverConfig(ctx *cli.Context, cfg *dappserverpb.DAppServerConfig) {
 	}
 	if ctx.GlobalIsSet(DAppServerWriteTimeoutMsFlag.Name) {
 		cfg.WriteTimeoutMs = ctx.GlobalUint64(DAppServerWriteTimeoutMsFlag.Name)
+	}
+	if ctx.GlobalIsSet(DAppServerLogLevelFlag.Name) {
+		cfg.LogLevel = ctx.GlobalString(DAppServerLogLevelFlag.Name)
+	}
+	if ctx.GlobalIsSet(DAppServerLogFileFlag.Name) {
+		cfg.LogFile = ctx.GlobalString(DAppServerLogFileFlag.Name)
 	}
 }
 

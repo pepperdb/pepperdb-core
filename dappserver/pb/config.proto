@@ -8,14 +8,25 @@ message Config {
 message DAppServerConfig {
     // Enable
     bool enable = 1;
-    // Only start DAppServer only
-    bool dapp_server_only = 2;
+
     // Host
-    string host = 3;
+    string host = 2;
+
     // Port
-    uint64 port = 4;
+    uint64 port = 3;
+
     // ReadTimeout in millisecond
-    uint64 read_timeout_ms = 5;
+    uint64 read_timeout_ms = 4;
+
     // WriteTimeout in millisecond
-    uint64 write_timeout_ms = 6;
+    uint64 write_timeout_ms = 5;
+
+    // Log level
+    string log_level = 6;
+
+    // Log file name
+    string log_file = 7;
+    
+    // Log file age, unit is s.
+    uint32 log_age = 8;
 }
