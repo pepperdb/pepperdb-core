@@ -23,35 +23,25 @@ type DAppServer struct {
 
 // NewDAppServer create the dapp server
 func NewDAppServer(config *dappserverpb.Config) (*DAppServer, error) {
-	/*if networkConf := n.Config().GetNetwork(); networkConf == nil {
-		logging.CLog().Fatal("Failed to find dapp_server config in config file")
-		return nil, errors.New("config.conf should has dapp_server")
-	}
-	config := &dappserverpb.DAppServerConfig{
-		Host:           "127.0.0.1",
-		Port:           8000,
-		ReadTimeoutMs:  300,
-		WriteTimeoutMs: 300,
-	}*/
 
 	mux := http.NewServeMux()
 	fh, err := newFileHandler(20*1024*1024, "./dapp-db")
 	if err != nil {
-		logging.CLog().Error("Create file handler error")
+		logging.CLog().Fatal("Create file handler error")
 	}
 	mux.Handle("/upload", fh)
 
 	server := &http.Server{
-		Addr:         config.Dappserver.GetHost() + ":" + strconv.Itoa(int(config.Dappserver.GetPort())),
-		ReadTimeout:  time.Duration(config.Dappserver.GetReadTimeoutMs()) * time.Millisecond,
-		WriteTimeout: time.Duration(config.Dappserver.GetWriteTimeoutMs()) * time.Millisecond,
+		Addr:         config.Dappserver.Host + ":" + strconv.Itoa(int(config.Dappserver.Port)),
+		ReadTimeout:  time.Duration(config.Dappserver.ReadTimeoutMs) * time.Millisecond,
+		WriteTimeout: time.Duration(config.Dappserver.WriteTimeoutMs) * time.Millisecond,
 		Handler:      mux,
 	}
 
 	if true {
 		logFile, err := os.Create("./dappserver.log")
 		if err != nil {
-			logging.CLog().Error("Create dapp server log file error")
+			logging.CLog().Fatal("Create dapp server log file error")
 			return nil, errors.New("Create dapp server log file error")
 		}
 		logger := log.New(logFile, "dapp_server_", log.Ldate|log.Ltime|log.Lshortfile)
@@ -80,6 +70,7 @@ func (ds *DAppServer) Start() error {
 }
 
 func (ds *DAppServer) loop() {
+	logging.CLog().Infof("Start DAppServer at: %s", ds.server.Addr)
 	ds.server.ListenAndServe()
 	logging.CLog().Info("DAppServer started")
 }

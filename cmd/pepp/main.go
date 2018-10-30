@@ -61,12 +61,12 @@ func main() {
 
 func pepp(ctx *cli.Context) error {
 
-	dasConf := dappserver.LoadConfig(config)
+	dASConf := dappserver.LoadConfig(config)
 
-	dappserverConfig(ctx, dasConf.Dappserver)
+	dappserverConfig(ctx, dASConf.Dappserver)
 
-	if !dasConf.Dappserver.GetEnable() {
-		d, err := dappserver.NewDAppServer(dasConf)
+	if dASConf.Dappserver.Enable {
+		d, err := dappserver.NewDAppServer(dASConf)
 		if err != nil {
 			return err
 		}
@@ -144,20 +144,15 @@ func makePepp(ctx *cli.Context) (*neblet.Neblet, error) {
 	return n, nil
 }
 
-func makeDAppServer(ctx *cli.Context) (*dappserver.DAppServer, bool, error) {
-	conf := dappserver.LoadConfig(config)
+func runDAppServer(ctx *cli.Context, d *dappserver.DAppServer) chan bool {
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 
-	dappserverConfig(ctx, conf.Dappserver)
+	d.Start()
 
-	if !conf.Dappserver.GetEnable() {
-		return nil, true, nil
-	}
-	d, err := dappserver.NewDAppServer()
-	if err != nil {
-		return nil, true, nil
-	}
-	only := conf.Dappserver.GetDappServerOnly()
-	return d, only, nil
+	quitCh := make(chan bool, 1)
+
+	return quitCh
 }
 
 // FatalF fatal format err

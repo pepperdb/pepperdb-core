@@ -15,18 +15,24 @@ message DAppServerConfig {
     // Port
     uint64 port = 3;
 
+    // Data dir
+    string data_dir = 4;
+
+    // Max upload size
+    uint64 max_upload_size = 5;
+
     // ReadTimeout in millisecond
-    uint64 read_timeout_ms = 4;
+    uint64 read_timeout_ms = 6;
 
     // WriteTimeout in millisecond
-    uint64 write_timeout_ms = 5;
+    uint64 write_timeout_ms = 7;
 
     // Log level
-    string log_level = 6;
+    string log_level = 8;
 
     // Log file name
-    string log_file = 7;
+    string log_file = 9;
     
     // Log file age, unit is s.
-    uint32 log_age = 8;
+    uint32 log_age = 10;
 }

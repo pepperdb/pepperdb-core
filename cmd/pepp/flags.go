@@ -245,6 +245,18 @@ var (
 		Usage: "dappserver port",
 	}
 
+	// DAppServerDataDirFlag dappserver data dir
+	DAppServerDataDirFlag = cli.StringFlag{
+		Name:  "dappserver.data_dir",
+		Usage: "dappserver data dir",
+	}
+
+	// DAppServerMaxUploadSizeFlag dappserver max upload size
+	DAppServerMaxUploadSizeFlag = cli.Uint64Flag{
+		Name:  "dappserver.max_upload_size",
+		Usage: "dappserver max upload size",
+	}
+
 	// DAppServerReadTimeoutMsFlag dappserver read time out in ms
 	DAppServerReadTimeoutMsFlag = cli.Uint64Flag{
 		Name:  "dappserver.read_timeout_ms",
@@ -274,6 +286,8 @@ var (
 		DAppServerEnableFlag,
 		DAppServerHostFlag,
 		DAppServerPortFlag,
+		DAppServerDataDirFlag,
+		DAppServerMaxUploadSizeFlag,
 		DAppServerReadTimeoutMsFlag,
 		DAppServerWriteTimeoutMsFlag,
 		DAppServerLogLevelFlag,
@@ -390,6 +404,12 @@ func dappserverConfig(ctx *cli.Context, cfg *dappserverpb.DAppServerConfig) {
 	}
 	if ctx.GlobalIsSet(DAppServerPortFlag.Name) {
 		cfg.Port = ctx.GlobalUint64(DAppServerPortFlag.Name)
+	}
+	if ctx.GlobalIsSet(DAppServerDataDirFlag.Name) {
+		cfg.DataDir = ctx.GlobalString(DAppServerDataDirFlag.Name)
+	}
+	if ctx.GlobalIsSet(DAppServerMaxUploadSizeFlag.Name) {
+		cfg.MaxUploadSize = ctx.Uint64(DAppServerMaxUploadSizeFlag.Name)
 	}
 	if ctx.GlobalIsSet(DAppServerReadTimeoutMsFlag.Name) {
 		cfg.ReadTimeoutMs = ctx.GlobalUint64(DAppServerReadTimeoutMsFlag.Name)
