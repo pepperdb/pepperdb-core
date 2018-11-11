@@ -145,8 +145,8 @@ func makePepp(ctx *cli.Context) (*neblet.Neblet, error) {
 }
 
 func runDAppServer(ctx *cli.Context, d *dappserver.DAppServer) chan bool {
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+	// c := make(chan os.Signal, 1)
+	// signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 
 	d.Start()
 

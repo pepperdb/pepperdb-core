@@ -358,8 +358,11 @@ message TransactionRequest {
     // binary data for transaction
     bytes binary = 10;
 
-    // transaction payload type, enum:binary, deploy, call
+    // transaction payload type, enum:binary, deploy, call, store
     string type = 20;
+
+    // dapp source code sending with this transaction
+    DAppRequest dapp = 30;
 }
 
 message ContractRequest {
@@ -374,6 +377,17 @@ message ContractRequest {
 
 	// the params of contract.
 	string args = 4;
+}
+
+message DAppRequest {
+    // dapp source code file
+    bytes file = 1;
+
+    // dapp md5
+    string md5 = 2;
+
+    // dapp type
+    string type = 3;
 }
 
 // Request message of SendRawTransactionRequest rpc.
