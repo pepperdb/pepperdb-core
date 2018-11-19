@@ -26,7 +26,7 @@ func LoadConfig(file string) *dappserverpb.Config {
 	if err := proto.UnmarshalText(conf, pb); err != nil {
 		logging.CLog().WithFields(logrus.Fields{
 			"err": err,
-		}).Fatal("Failed to parse the config file: %s.", file)
+		}).Fatal("Failed to parse the config file: ", file)
 	}
 	return pb
 }

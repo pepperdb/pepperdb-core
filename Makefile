@@ -48,8 +48,8 @@ deploy-libs:
 	$(LDCONFIG)
 
 build:
-	cd cmd/pepp; go build $(LDFLAGS) -o ../../$(BINARY)-$(COMMIT)
-	cd cmd/crashreporter; go build $(LDFLAGS) -o ../../pepp-crashreporter
+	cd cmd/pepp; go build -gcflags "-N -l" $(LDFLAGS) -o ../../$(BINARY)-$(COMMIT)
+	cd cmd/crashreporter; go build -gcflags "-N -l" $(LDFLAGS) -o ../../pepp-crashreporter
 	rm -f $(BINARY)
 	cp -f $(BINARY)-$(COMMIT) $(BINARY)
 

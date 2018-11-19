@@ -2,10 +2,11 @@ package rpc
 
 import (
 	"errors"
+
 	"github.com/pepperdb/pepperdb-core/network/rpc/pb"
 
-	"github.com/pepperdb/pepperdb-core/storage"
 	"github.com/pepperdb/pepperdb-core/common/util/logging"
+	"github.com/pepperdb/pepperdb-core/storage"
 	"github.com/sirupsen/logrus"
 
 	"encoding/json"
@@ -181,6 +182,23 @@ func parseTransactionPayload(reqTx *rpcpb.TransactionRequest) (payloadType strin
 					return "", nil, err
 				}
 			}
+		case core.TxPayloadDAppStoreType:
+			{
+				payloadType = core.TxPayloadDAppStoreType
+				if reqTx.Dapp == nil {
+					return "", nil, core.ErrInvalidDAppStoreFile
+				}
+				dappstorepayload, err := core.NewDAppStorePayload(reqTx.Dapp.File, reqTx.Dapp.Md5, reqTx.Dapp.Type)
+				if err != nil {
+					return "", nil, err
+				}
+
+				if payload, err = dappstorepayload.ToBytes(); err != nil {
+					return "", nil, err
+				}
+			}
+		// TODO: dapp download payload
+		// case core.TxpayloadDappDownloadType: { }
 		default:
 			return "", nil, core.ErrInvalidTxPayloadType
 		}
@@ -211,6 +229,33 @@ func parseTransactionPayload(reqTx *rpcpb.TransactionRequest) (payloadType strin
 				}
 			} else {
 				return "", nil, errors.New("invalid contract")
+			}
+		} else if reqTx.Dapp != nil {
+			toAddr, err := core.AddressParse(reqTx.To)
+			if err != nil {
+				return "", nil, err
+			}
+			var dappAddr *core.Address
+			if len(reqTx.Dapp.Address) != 0 {
+				dappAddr, err = core.AddressParse(reqTx.Dapp.Address)
+				if err != nil {
+					return "", nil, err
+				}
+			}
+			if len(reqTx.Dapp.File) > 0 && len(reqTx.Dapp.Address) == 0 && toAddr.Type() == core.DAppServerAddress {
+				payloadType = core.TxPayloadDAppStoreType
+				payloadObj, err := core.NewDAppStorePayload(reqTx.Dapp.File, reqTx.Dapp.Md5, reqTx.Dapp.Type)
+				if err != nil {
+					return "", nil, err
+				}
+				if payload, err = payloadObj.ToBytes(); err != nil {
+					return "", nil, err
+				}
+			} else if len(reqTx.Dapp.File) == 0 && len(reqTx.Dapp.Address) > 0 && dappAddr != nil && dappAddr.Type() == core.DAppAddress {
+				// TODO: dapp download payload
+				payloadType = core.TxPayloadDAppStoreType
+			} else {
+				return "", nil, errors.New("invalid dapp operation")
 			}
 		} else {
 			payloadType = core.TxPayloadBinaryType

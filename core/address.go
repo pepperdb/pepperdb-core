@@ -16,6 +16,8 @@ const UndefinedAddressType AddressType = 0x00
 const (
 	AccountAddress AddressType = 0x57 + iota
 	ContractAddress
+	DAppServerAddress
+	DAppAddress
 )
 
 // const
@@ -150,7 +152,7 @@ func AddressParseFromBytes(b []byte) (*Address, error) {
 	}
 
 	switch AddressType(b[AddressTypeIndex]) {
-	case AccountAddress, ContractAddress:
+	case AccountAddress, ContractAddress, DAppServerAddress, DAppAddress:
 	default:
 		return nil, ErrInvalidAddressType
 	}

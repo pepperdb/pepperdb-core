@@ -12,12 +12,12 @@ import (
 	"encoding/json"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/pepperdb/pepperdb-core/core/pb"
 	"github.com/pepperdb/pepperdb-core/common/crypto"
 	"github.com/pepperdb/pepperdb-core/common/crypto/keystore"
 	"github.com/pepperdb/pepperdb-core/common/util"
 	"github.com/pepperdb/pepperdb-core/common/util/byteutils"
 	"github.com/pepperdb/pepperdb-core/common/util/logging"
+	"github.com/pepperdb/pepperdb-core/core/pb"
 	"github.com/sirupsen/logrus"
 )
 
@@ -375,6 +375,10 @@ func (tx *Transaction) LoadPayload() (TxPayload, error) {
 		payload, err = LoadDeployPayload(tx.data.Payload)
 	case TxPayloadCallType:
 		payload, err = LoadCallPayload(tx.data.Payload)
+	case TxPayloadDAppStoreType:
+		payload, err = LoadDAppStorePayload(tx.data.Payload)
+	// TODO TxPayloadDAppDownloadType
+	// case TxPayloadDAppDownloadType:
 	default:
 		err = ErrInvalidTxPayloadType
 	}

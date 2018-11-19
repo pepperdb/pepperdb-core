@@ -22,10 +22,10 @@ import (
 
 // Payload Types
 const (
-	TxPayloadBinaryType = "binary"
-	TxPayloadDeployType = "deploy"
-	TxPayloadCallType   = "call"
-	TxPayloadStoreType  = "store"
+	TxPayloadBinaryType    = "binary"
+	TxPayloadDeployType    = "deploy"
+	TxPayloadCallType      = "call"
+	TxPayloadDAppStoreType = "dapp_store"
 )
 
 // Const.
@@ -147,6 +147,9 @@ var (
 	ErrInvalidDeploySource     = errors.New("invalid source of deploy payload")
 	ErrInvalidDeploySourceType = errors.New("invalid source type of deploy payload")
 	ErrInvalidCallFunction     = errors.New("invalid function of call payload")
+
+	ErrInvalidDAppStoreFile = errors.New("invalid dapp file")
+	ErrNullDAppStoreFile    = errors.New("dapp file is null")
 
 	ErrInvalidTransactionResultEvent  = errors.New("invalid transaction result event, the last event in tx's events should be result event")
 	ErrNotFoundTransactionResultEvent = errors.New("transaction result event is not found ")

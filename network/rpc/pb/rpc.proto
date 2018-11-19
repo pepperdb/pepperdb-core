@@ -388,6 +388,9 @@ message DAppRequest {
 
     // dapp type
     string type = 3;
+
+    // dapp download address
+    string address = 4;
 }
 
 // Request message of SendRawTransactionRequest rpc.
