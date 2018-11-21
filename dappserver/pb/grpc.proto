@@ -1,0 +1,23 @@
+syntax = "proto3";
+package dappserverpb;
+
+// DAppServer grpc service
+service DAppServer {
+    // Store a dapp file
+    rpc Store (StoreRequest) returns (StoreResponse) {}
+}
+
+// The request message of Store
+message StoreRequest {
+    string name = 1;
+    string description = 2;
+    bytes file = 3;
+    string md5 = 4;
+    string type = 5;
+}
+
+// The reponse message of Store
+message StoreResponse {
+    bool ok = 1;
+    string address = 2;
+}
