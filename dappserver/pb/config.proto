@@ -6,33 +6,32 @@ message Config {
 }
 
 message DAppServerConfig {
-    // Enable
-    bool enable = 1;
 
-    // Host
-    string host = 2;
+    // RPC listen addresses
+    repeated string rpc_listen = 1;
 
-    // Port
-    uint64 port = 3;
+    // RocksDB database path
+    string db_path = 2;
 
-    // Data dir
-    string data_dir = 4;
+    // RocksDB config
+    RocksDBConfig  rocksdb= 3;
 
     // Max upload size
-    uint64 max_upload_size = 5;
+    uint32 max_upload_size = 4;
 
-    // ReadTimeout in millisecond
-    uint64 read_timeout_ms = 6;
-
-    // WriteTimeout in millisecond
-    uint64 write_timeout_ms = 7;
+    // Connection limits
+    uint32 connection_limits = 5;
 
     // Log level
-    string log_level = 8;
+    string log_level = 10;
 
     // Log file name
-    string log_file = 9;
+    string log_file = 11;
     
     // Log file age, unit is s.
-    uint32 log_age = 10;
+    uint32 log_age = 12;
+}
+
+message RocksDBConfig {
+    uint32 write_buffer_size = 1;
 }

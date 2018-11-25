@@ -18,6 +18,12 @@ func (g *GRPCService) Store(ctx context.Context, in *dappserverpb.StoreRequest) 
 }
 
 // NewGRPCService create a GRPCService
-func NewGRPCService(config *dappserverpb.Config) (*GRPCService, error) {
-	return nil, nil
+func NewGRPCService(dbPath string, config *dappserverpb.RocksDBConfig) (*GRPCService, error) {
+	rocksdb, err := storage.NewRocksStorage(dbPath)
+	if err != nil {
+		return nil, err
+	}
+
+	grpc := &GRPCService{db: rocksdb}
+	return grpc, nil
 }

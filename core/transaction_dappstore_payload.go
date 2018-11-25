@@ -2,6 +2,7 @@ package core
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/pepperdb/pepperdb-core/common/util"
 )
@@ -57,6 +58,15 @@ func (payload *DAppStorePayload) Execute(limitedGas *util.Uint128, tx *Transacti
 	if limitedGas.Cmp(util.NewUint128()) <= 0 {
 		return util.NewUint128(), "", ErrOutOfGasLimit
 	}
+
+	dappStore, err := LoadDAppStorePayload(tx.data.Payload)
+	if err != nil {
+		return util.NewUint128(), "", err
+	}
+
+	// TODO store dapp file to dapp server
+
+	fmt.Printf("file: %s, md5: %s, type: %s", dappStore.File, dappStore.MD5, dappStore.Type)
 
 	return util.NewUint128(), "", nil
 }
