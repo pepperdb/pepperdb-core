@@ -1,10 +1,16 @@
 package core
 
 import (
+	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"time"
 
 	"github.com/pepperdb/pepperdb-core/common/util"
+	"github.com/pepperdb/pepperdb-core/common/util/logging"
+	"github.com/pepperdb/pepperdb-core/dappserver/pb"
+	"google.golang.org/grpc"
 )
 
 // DAppStorePayload carry dapp store information
@@ -64,9 +70,36 @@ func (payload *DAppStorePayload) Execute(limitedGas *util.Uint128, tx *Transacti
 		return util.NewUint128(), "", err
 	}
 
-	// TODO store dapp file to dapp server
-
+	fileInfo, err := store(payload)
+	if err != nil {
+		return util.NewUint128(), "", err
+	}
 	fmt.Printf("file: %s, md5: %s, type: %s", dappStore.File, dappStore.MD5, dappStore.Type)
 
-	return util.NewUint128(), "", nil
+	return util.NewUint128(), fileInfo, nil
+}
+
+// Call DAppServer grpc store service
+func store(payload *DAppStorePayload) (string, error) {
+	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
+	if err != nil {
+		logging.CLog().Errorf("Can't connect to DAppServer grpc service: %s", "localhost:50051")
+		return "", errors.New("Can't connect to DAppServer grpc service")
+	}
+	defer conn.Close()
+	client := dappserverpb.NewDAppServerClient(conn)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	in := &dappserverpb.StoreRequest{
+		Name:        "test",
+		Description: "test desc",
+		File:        payload.File,
+		Md5:         payload.MD5,
+		Type:        payload.Type,
+	}
+	r, err := client.Store(ctx, in)
+	if err != nil {
+		return "", err
+	}
+	return r.Address, nil
 }

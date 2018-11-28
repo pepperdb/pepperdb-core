@@ -11,7 +11,6 @@ import (
 
 	"github.com/pepperdb/pepperdb-core/common/util/logging"
 	"github.com/pepperdb/pepperdb-core/core"
-	"github.com/pepperdb/pepperdb-core/dappserver"
 	"github.com/pepperdb/pepperdb-core/neblet"
 	"github.com/urfave/cli"
 )
@@ -61,25 +60,6 @@ func main() {
 
 func pepp(ctx *cli.Context) error {
 
-	/*
-		dASConf := dappserver.LoadConfig(config)
-
-		dappserverConfig(ctx, dASConf.Dappserver)
-
-		if dASConf.Dappserver.Enable {
-			d, err := dappserver.NewDAppServer(dASConf)
-			if err != nil {
-				return err
-			}
-
-			logging.Init(d.Config().Dappserver.LogFile, d.Config().Dappserver.LogLevel, d.Config().Dappserver.LogAge)
-
-			select {
-			case <-runDAppServer(ctx, d):
-				return nil
-			}
-		} else {
-	*/
 	n, err := makePepp(ctx)
 	if err != nil {
 		return err
@@ -98,7 +78,6 @@ func pepp(ctx *cli.Context) error {
 	case <-runPepp(ctx, n):
 		return nil
 	}
-	// }
 }
 
 func runPepp(ctx *cli.Context, n *neblet.Neblet) chan bool {
@@ -144,17 +123,6 @@ func makePepp(ctx *cli.Context) (*neblet.Neblet, error) {
 		return nil, err
 	}
 	return n, nil
-}
-
-func runDAppServer(ctx *cli.Context, d *dappserver.DAppServer) chan bool {
-	// c := make(chan os.Signal, 1)
-	// signal.Notify(c, os.Interrupt, syscall.SIGTERM)
-
-	d.Start()
-
-	quitCh := make(chan bool, 1)
-
-	return quitCh
 }
 
 // FatalF fatal format err
