@@ -39,6 +39,7 @@ func main() {
 	app.Flags = append(app.Flags, RPCFlags...)
 	app.Flags = append(app.Flags, AppFlags...)
 	app.Flags = append(app.Flags, StatsFlags...)
+	app.Flags = append(app.Flags, DAppServerFlags...)
 
 	sort.Sort(cli.FlagsByName(app.Flags))
 
@@ -52,6 +53,7 @@ func main() {
 		licenseCommand,
 		configCommand,
 		blockDumpCommand,
+		dappServerCommand,
 	}
 	sort.Sort(cli.CommandsByName(app.Commands))
 

@@ -227,28 +227,22 @@ var (
 		StatsDBPasswordFlag,
 	}
 
-	// DAppServerEnableFlag dappserver enable
-	DAppServerEnableFlag = cli.BoolFlag{
-		Name:  "dappserver.enable",
+	// DAppServerRPCListenFlag dappserver rpc listen addr
+	DAppServerRPCListenFlag = cli.BoolFlag{
+		Name:  "dappserver.rpclisten",
 		Usage: "dappserver enable",
 	}
 
-	// DAppServerHostFlag dappserver host
-	DAppServerHostFlag = cli.StringFlag{
-		Name:  "dappserver.host",
+	// DAppServerDBPathFlag dappserver rocksdb database path
+	DAppServerDBPathFlag = cli.StringFlag{
+		Name:  "dappserver.dbpath",
 		Usage: "dappserver host",
 	}
 
-	// DAppServerPortFlag dappserver port
-	DAppServerPortFlag = cli.Uint64Flag{
-		Name:  "dappserver.port",
-		Usage: "dappserver port",
-	}
-
-	// DAppServerDataDirFlag dappserver data dir
-	DAppServerDataDirFlag = cli.StringFlag{
-		Name:  "dappserver.data_dir",
-		Usage: "dappserver data dir",
+	// DAppServerDBWriteBufferSizeFlag dappserver rocksdb write buffer size
+	DAppServerDBWriteBufferSizeFlag = cli.UintFlag{
+		Name:  "dappserver.rocksdb.writebuffersize",
+		Usage: "dappserver rocksdb WriteBufferSize",
 	}
 
 	// DAppServerMaxUploadSizeFlag dappserver max upload size
@@ -257,39 +251,31 @@ var (
 		Usage: "dappserver max upload size",
 	}
 
-	// DAppServerReadTimeoutMsFlag dappserver read time out in ms
-	DAppServerReadTimeoutMsFlag = cli.Uint64Flag{
-		Name:  "dappserver.read_timeout_ms",
-		Usage: "dappserver read_timeout_ms",
-	}
-
-	// DAppServerWriteTimeoutMsFlag dappserver write time out in ms
-	DAppServerWriteTimeoutMsFlag = cli.Uint64Flag{
-		Name:  "dappserver.write_timeout_ms",
-		Usage: "dappserver write_timeout_ms",
+	// DAppServerConnectionsLimitsFlag dappserver grpc connections limits
+	DAppServerConnectionsLimitsFlag = cli.UintFlag{
+		Name:  "dappserver.connectionlimits",
+		Usage: "dappserver connection limits",
 	}
 
 	// DAppServerLogLevelFlag dappserver log level
 	DAppServerLogLevelFlag = cli.StringFlag{
-		Name:  "dappserver.log_level",
-		Usage: "dappserver log_level",
+		Name:  "dappserver.loglevel",
+		Usage: "dappserver log level",
 	}
 
 	// DAppServerLogFileFlag dappserver log file name
 	DAppServerLogFileFlag = cli.StringFlag{
-		Name:  "dappserver.log_file",
+		Name:  "dappserver.logfile",
 		Usage: "dappserver log file",
 	}
 
 	// DAppServerFlags config list
 	DAppServerFlags = []cli.Flag{
-		DAppServerEnableFlag,
-		DAppServerHostFlag,
-		DAppServerPortFlag,
-		DAppServerDataDirFlag,
+		DAppServerRPCListenFlag,
+		DAppServerDBPathFlag,
+		DAppServerDBWriteBufferSizeFlag,
 		DAppServerMaxUploadSizeFlag,
-		DAppServerReadTimeoutMsFlag,
-		DAppServerWriteTimeoutMsFlag,
+		DAppServerConnectionsLimitsFlag,
 		DAppServerLogLevelFlag,
 		DAppServerLogFileFlag,
 	}
@@ -396,26 +382,20 @@ func statsConfig(ctx *cli.Context, cfg *nebletpb.StatsConfig) {
 }
 
 func dappserverConfig(ctx *cli.Context, cfg *dappserverpb.DAppServerConfig) {
-	if ctx.GlobalIsSet(DAppServerEnableFlag.Name) {
-		cfg.Enable = ctx.GlobalBool(DAppServerEnableFlag.Name)
+	if ctx.GlobalIsSet(DAppServerRPCListenFlag.Name) {
+		cfg.RpcListen = ctx.GlobalStringSlice(DAppServerRPCListenFlag.Name)
 	}
-	if ctx.GlobalIsSet(DAppServerHostFlag.Name) {
-		cfg.Host = ctx.GlobalString(DAppServerHostFlag.Name)
+	if ctx.GlobalIsSet(DAppServerDBPathFlag.Name) {
+		cfg.DbPath = ctx.GlobalString(DAppServerDBPathFlag.Name)
 	}
-	if ctx.GlobalIsSet(DAppServerPortFlag.Name) {
-		cfg.Port = ctx.GlobalUint64(DAppServerPortFlag.Name)
-	}
-	if ctx.GlobalIsSet(DAppServerDataDirFlag.Name) {
-		cfg.DataDir = ctx.GlobalString(DAppServerDataDirFlag.Name)
+	if ctx.GlobalIsSet(DAppServerDBWriteBufferSizeFlag.Name) {
+		cfg.Rocksdb.WriteBufferSize = uint32(ctx.GlobalUint(DAppServerDBWriteBufferSizeFlag.Name))
 	}
 	if ctx.GlobalIsSet(DAppServerMaxUploadSizeFlag.Name) {
-		cfg.MaxUploadSize = ctx.Uint64(DAppServerMaxUploadSizeFlag.Name)
+		cfg.MaxUploadSize = uint32(ctx.GlobalUint(DAppServerMaxUploadSizeFlag.Name))
 	}
-	if ctx.GlobalIsSet(DAppServerReadTimeoutMsFlag.Name) {
-		cfg.ReadTimeoutMs = ctx.GlobalUint64(DAppServerReadTimeoutMsFlag.Name)
-	}
-	if ctx.GlobalIsSet(DAppServerWriteTimeoutMsFlag.Name) {
-		cfg.WriteTimeoutMs = ctx.GlobalUint64(DAppServerWriteTimeoutMsFlag.Name)
+	if ctx.GlobalIsSet(DAppServerConnectionsLimitsFlag.Name) {
+		cfg.ConnectionLimits = uint32(ctx.GlobalUint(DAppServerConnectionsLimitsFlag.Name))
 	}
 	if ctx.GlobalIsSet(DAppServerLogLevelFlag.Name) {
 		cfg.LogLevel = ctx.GlobalString(DAppServerLogLevelFlag.Name)
