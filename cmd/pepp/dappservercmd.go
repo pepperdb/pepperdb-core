@@ -6,6 +6,14 @@ import (
 )
 
 var (
+	// DAppServerConfigFlag dappserver config file path
+	DAppServerConfigFlag = cli.StringFlag{
+		Name:        "config, c",
+		Usage:       "load dappserver configuration from `FILE`",
+		Value:       "conf/example/dappserver.conf",
+		Destination: &config,
+	}
+
 	dappServerCommand = cli.Command{
 		Action:    MergeFlags(startDAppServer),
 		Name:      "dappserver",
@@ -14,6 +22,9 @@ var (
 		Category:  "DAPPSERVER COMMANDS",
 		Description: `
 The dappserver command start a dapp server.`,
+		Flags: []cli.Flag{
+			DAppServerConfigFlag,
+		},
 	}
 )
 
